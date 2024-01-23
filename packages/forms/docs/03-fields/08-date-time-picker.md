@@ -248,3 +248,21 @@ DatePicker::make('date_of_birth')
     ->minDate(now()->subYears(150))
     ->maxDate(now())
 ```
+
+### Set Date or DateTime default
+
+You can choose which field will use Date or Datetime, then a standard date using the `afterStateHydrated` function:
+
+```php
+use Filament\Forms\Components\DateTimePicker;
+
+DateTimePicker::make('data_resposta')
+    ->afterStateHydrated(function (DateTimePicker $component, ?string $state) {
+        if (!$state) {
+           $component->state((now()->toDateTimeString()));
+           //"2024-01-23 13:29:32"
+       }
+   })
+```
+
+
